@@ -7,15 +7,17 @@ int main() {
 
     int i = 0;
 
-    string array[] = {"satu", "dua", "tiga", "empat", "lima"};
+    cout << "Masukkan batas: "; 
+    cin >> batas;
+
+    string array[] = {"satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh"};
     
-    while (i <=  batas)
+    while (i <= batas)
     {
         cout << "Elemen ke-" << i << ": " << array[i] << endl;
         i++;
     }
     
-
     return 0;
 }
     
