@@ -1,192 +1,128 @@
-# 📘 **Dokumentasi Program: Aplikasi Menu Interaktif C++**
-
-## 📝 Deskripsi Program
-
-Program ini adalah aplikasi menu interaktif berbasis **console C++** yang dirancang untuk mendemonstrasikan konsep dasar pemrograman, seperti:
-
-* Golongan tipe data
-* Operator aritmatika
-* Operator perbandingan
-* Operator logika
-* Sistem menu bertingkat (nested menu)
-* Error handling untuk mencegah input tidak valid
-
-Program menggunakan fungsi khusus (`inputInt()`) untuk **mencegah crash** apabila user memasukkan huruf, simbol, atau angka di luar range.
+# 🌟 **DOKUMENTASI PROGRAM — APLIKASI MENU INTERAKTIF C++**
 
 ---
 
-## 💻 Kode Program Lengkap
+# 📘 **1. Deskripsi Program**
 
-```cpp
-#include <iostream>
-#include <limits>
-using namespace std;
+Aplikasi ini adalah **program menu interaktif berbasis C++** yang dibuat untuk memperkenalkan konsep-konsep fundamental pemrograman melalui menu yang terstruktur, jelas, dan mudah dipahami.
 
-void garis() {
-    cout << "============================================" << endl;
-}
+Program ini menampilkan contoh:
 
-// Fungsi input aman
-int inputInt() {
-    int x;
-    while (true) {
-        cin >> x;
-        if (!cin.fail()) return x;
+* Tipe data
+* Operator
+* Perulangan
+* Array 1D & 2D
+* Menu bertingkat (nested menu)
+* Sistem input aman (anti-crash)
 
-        cin.clear();
-        cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
-        cout << "Input tidak valid! Masukkan angka: ";
-    }
-}
+---
 
-int main() {
-    int option;
+# 🧩 **2. Fitur Utama Program**
 
-    do {
-        garis();
-        cout << "                MENU UTAMA" << endl;
-        garis();
-        cout << "1. Golongan Tipe Data" << endl;
-        cout << "2. Operator Aritmatika" << endl;
-        cout << "3. Operator Perbandingan" << endl;
-        cout << "4. Operator Logika" << endl;
-        cout << "5. Keluar Program" << endl;
-        garis();
-        cout << "Masukkan pilihan (1-5): ";
-        option = inputInt();
-        garis();
+### ✔ Sistem Menu Bertingkat
 
-        if (option < 1 || option > 5) {
-            cout << "Pilihan tidak tersedia! Pilih angka 1–5." << endl;
-            continue;
-        }
+Setiap menu memiliki sub-menu sehingga navigasi terasa natural dan edukatif.
 
-        // ============================================
-        // 1. Golongan Tipe Data
-        // ============================================
-        if (option == 1) {
-            int sub;
+### ✔ Input Aman
 
-            do {
-                garis();
-                cout << "         MENU GOLONGAN TIPE DATA" << endl;
-                garis();
-                cout << "1. Integer" << endl;
-                cout << "2. Float" << endl;
-                cout << "3. Double" << endl;
-                cout << "4. Char" << endl;
-                cout << "5. Kembali ke Menu Utama" << endl;
-                garis();
-                cout << "Masukkan pilihan (1-5): ";
-                sub = inputInt();
-                garis();
+Menggunakan fungsi `inputInt()` untuk menghindari crash saat user memasukkan karakter tidak valid.
 
-                if (sub < 1 || sub > 5) {
-                    cout << "Pilihan tidak valid!" << endl;
-                    continue;
-                }
+### ✔ Contoh-Konsep Lengkap
 
-                if (sub == 1) cout << "Integer adalah tipe data bilangan bulat." << endl;
-                if (sub == 2) cout << "Float adalah tipe data bilangan pecahan presisi tunggal." << endl;
-                if (sub == 3) cout << "Double adalah tipe data bilangan pecahan presisi ganda." << endl;
-                if (sub == 4) cout << "Char adalah tipe data karakter." << endl;
+Program mencakup:
 
-                garis();
+* Operator Aritmatika
+* Operator Perbandingan
+* Operator Logika
+* Perulangan lengkap (for, while, do-while, range-based loop)
+* Array 1D & 2D
 
-            } while (sub != 5);
-        }
+### ✔ Tampilan Bersih
 
-        // ============================================
-        // 2. Operator Aritmatika
-        // ============================================
-        if (option == 2) {
-            int a, b;
-            cout << "Masukkan nilai a: ";
-            a = inputInt();
-            cout << "Masukkan nilai b: ";
-            b = inputInt();
+Setiap menu dibatasi garis dan diberi penjelasan yang singkat dan mudah dimengerti.
 
-            garis();
-            cout << "Hasil Penjumlahan  : " << a + b << endl;
-            cout << "Hasil Pengurangan  : " << a - b << endl;
-            cout << "Hasil Perkalian    : " << a * b << endl;
+---
 
-            if (b != 0)
-                cout << "Hasil Pembagian    : " << a / b << endl;
-            else
-                cout << "Hasil Pembagian    : Error (b = 0)" << endl;
+# 🖥️ **3. Kode Program (Versi Modular)**
 
-            cout << "Hasil Modulus      : " << (b != 0 ? a % b : 0) << endl;
-            garis();
-        }
+Karena full code sudah kamu punya di file `.cpp`, bagian ini cukup menjelaskan bahwa:
 
-        // ============================================
-        // 3. Operator Perbandingan
-        // ============================================
-        if (option == 3) {
-            int a, b;
-            cout << "Masukkan nilai a: ";
-            a = inputInt();
-            cout << "Masukkan nilai b: ";
-            b = inputInt();
-            garis();
+> Program terdiri dari beberapa fungsi terstruktur:
 
-            cout << "a == b : " << (a == b) << endl;
-            cout << "a != b : " << (a != b) << endl;
-            cout << "a > b  : " << (a > b) << endl;
-            cout << "a < b  : " << (a < b) << endl;
-            cout << "a >= b : " << (a >= b) << endl;
-            cout << "a <= b : " << (a <= b) << endl;
-            garis();
-        }
-
-        // ============================================
-        // 4. Operator Logika
-        // ============================================
-        if (option == 4) {
-            int x, y;
-
-            cout << "Masukkan nilai x (0 atau 1): ";
-            x = inputInt();
-
-            cout << "Masukkan nilai y (0 atau 1): ";
-            y = inputInt();
-
-            garis();
-            cout << "x AND y : " << (x && y) << endl;
-            cout << "x OR y  : " << (x || y) << endl;
-            cout << "NOT x   : " << (!x) << endl;
-            garis();
-        }
-
-    } while (option != 5);
-
-    garis();
-    cout << "Program selesai. Terima kasih!" << endl;
-
-    return 0;
-}
+```
+menuUtama()
+menuTipeData()
+menuAritmatika()
+menuPerbandingan()
+menuLogika()
+menuPerulangan()
+menuArray()
+menuArray1D()
+menuArray2D()
+inputInt()
 ```
 
 ---
 
-## ▶️ **Simulasi Eksekusi Program**
-
-### **1. Menu Utama**
+# 🧭 **4. Struktur Navigasi Menu**
 
 ```
+MENU UTAMA
+ ├── 1. Tipe Data
+ │     ├── Integer
+ │     ├── Float
+ │     ├── Double
+ │     └── Char
+ │
+ ├── 2. Operator Aritmatika
+ │
+ ├── 3. Operator Perbandingan
+ │
+ ├── 4. Operator Logika
+ │
+ ├── 5. Perulangan
+ │     ├── For Loop
+ │     ├── While Loop
+ │     ├── Do-While Loop
+ │     └── Range-Based Loop
+ │
+ ├── 6. Larik (Array)
+ │     ├── Array 1 Dimensi
+ │     └── Array 2 Dimensi
+ │
+ └── 7. Keluar Program
+```
+
+---
+
+# ▶️ **5. Simulasi Eksekusi Program**
+
+---
+
+## 📌 **Menu Utama**
+
+```
+============================================
+                 MENU UTAMA
+============================================
 1. Golongan Tipe Data
 2. Operator Aritmatika
 3. Operator Perbandingan
 4. Operator Logika
-5. Keluar Program
+5. Perulangan
+6. Larik (Array)
+7. Keluar Program
+============================================
+Masukkan pilihan (1-7):
 ```
 
 ---
 
-## 📂 1. Golongan Tipe Data
+# 🧱 **6. Contoh Output Per Menu**
 
-### Contoh:
+---
+
+## 📂 **1. Golongan Tipe Data**
 
 Input:
 
@@ -203,33 +139,33 @@ Integer adalah tipe data bilangan bulat.
 
 ---
 
-## ➗ 2. Operator Aritmatika
+## ➗ **2. Operator Aritmatika**
 
 Input:
 
 ```
-a = 10
-b = 5
+a = 12
+b = 6
 ```
 
 Output:
 
 ```
-Hasil Penjumlahan  : 15
-Hasil Pengurangan  : 5
-Hasil Perkalian    : 50
+Hasil Penjumlahan  : 18
+Hasil Pengurangan  : 6
+Hasil Perkalian    : 72
 Hasil Pembagian    : 2
 Hasil Modulus      : 0
 ```
 
 ---
 
-## ⚖️ 3. Operator Perbandingan
+## ⚖ **3. Operator Perbandingan**
 
 Input:
 
 ```
-a = 7
+a = 5
 b = 10
 ```
 
@@ -246,7 +182,7 @@ a <= b : 1
 
 ---
 
-## 🔐 4. Operator Logika
+## 🔐 **4. Operator Logika**
 
 Input:
 
@@ -265,11 +201,67 @@ NOT x   : 0
 
 ---
 
-## 🛡️ **Error Handling Demonstrasi**
+## 🔁 **5. Perulangan**
 
-### Jika user memasukkan huruf:
+### Range-Based Loop (Modern C++)
 
 Input:
+
+```
+n = 5
+Array = {1, 2, 3, 4, 5}
+```
+
+Output:
+
+```
+1 2 3 4 5
+```
+
+---
+
+## 📊 **6. Array 1 Dimensi**
+
+Input:
+
+```
+Jumlah elemen: 5
+Isi: 1 2 3 4 5
+```
+
+Output:
+
+```
+Isi array: 1 2 3 4 5
+```
+
+---
+
+## 🧮 **7. Array 2 Dimensi**
+
+Input:
+
+```
+Baris : 2
+Kolom : 3
+Isi matriks:
+1 2 3
+4 5 6
+```
+
+Output:
+
+```
+Matriks:
+1 2 3
+4 5 6
+```
+
+---
+
+# 🛡️ **8. Error Handling**
+
+### Input huruf
 
 ```
 Masukkan pilihan: a
@@ -281,48 +273,38 @@ Output:
 Input tidak valid! Masukkan angka:
 ```
 
-### Jika user memasukkan angka di luar range:
+### Input angka di luar menu
 
 ```
-Masukkan pilihan (1-5): 9
-Pilihan tidak tersedia! Pilih angka 1–5.
+Masukkan pilihan: 10
 ```
 
----
-
-## 🔎 **Analisis Program**
-
-### 1. Struktur Program
-
-* Program menggunakan **nested menu** (menu di dalam menu).
-* Semua input menggunakan **inputInt()** untuk keamanan.
-* Navigasi tidak kembali ke awal, tetapi bertahap sesuai sub-menu.
-
-### 2. Keunggulan
-
-* Lebih aman
-* Lebih edukatif
-* Cocok untuk praktik dasar C++
-
----
-
-## 📊 Visualisasi Menu
+Output:
 
 ```
-MENU UTAMA
- ├── Golongan Tipe Data
- ├── Operator Aritmatika
- ├── Operator Perbandingan
- ├── Operator Logika
- └── Keluar Program
+Pilihan tidak tersedia!
 ```
 
 ---
 
-## 🏁 Output Akhir Program
+# 📊 **9. Visualisasi Bagian Perulangan**
 
 ```
+PERULANGAN
+ ├── For Loop
+ ├── While Loop
+ ├── Do-While Loop
+ └── Range-Based Loop (Modern C++)
+```
+
+---
+
+# 🏁 **10. Output Akhir Program**
+
+```
+============================================
 Program selesai. Terima kasih!
+============================================
 ```
 
 ---
