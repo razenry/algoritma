@@ -53,10 +53,32 @@ void pause()
     cin.get();
 }
 
-// ----------------------------------------------------------------------------------------
-// MAIN PROGRAM
-// ----------------------------------------------------------------------------------------
+// ------ Forward declarations (functions per menu/submenu) ------
+void menuUtama();
+void menuGolonganTipeData();
+void menuAngka();
+void menuBilanganBulat();
+void menuBilanganPecahan();
+void menuKarakter();
+void menuWaktu();
+void menuBoolean();
+void menuPercabangan();
+void menuPerulangan();
+void menuLarik(); // array
+
+// -------------------------------
+// main
+// -------------------------------
 int main()
+{
+    menuUtama();
+    return 0;
+}
+
+// -------------------------------
+// Menu Utama
+// -------------------------------
+void menuUtama()
 {
     int option;
 
@@ -84,458 +106,523 @@ int main()
             continue;
         }
 
-        // ====================================================================================
-        // 1. GOLONGAN TIPE DATA
-        // ====================================================================================
         if (option == 1)
+            menuGolonganTipeData();
+        else if (option == 2)
+            menuPercabangan();
+        else if (option == 3)
+            menuPerulangan();
+        else if (option == 4)
+            menuLarik();
+
+    } while (option != 5);
+
+    clearScreen();
+    garis();
+    cout << GREEN << "Program selesai. Terima kasih" << RESET << endl;
+    garis();
+}
+
+// -------------------------------
+// Menu: Golongan Tipe Data
+// -------------------------------
+void menuGolonganTipeData()
+{
+    int subOption = 0;
+
+    do
+    {
+        clearScreen();
+        garis();
+        cout << BLUE << "[ Golongan Tipe Data ]" << RESET << endl;
+        garis();
+        cout << "1. Angka" << endl;
+        cout << "2. Karakter" << endl;
+        cout << "3. Waktu" << endl;
+        cout << "4. Boolean" << endl;
+        cout << "5. Kembali ke Menu Utama" << endl;
+        garis();
+
+        cout << "Masukkan pilihan (1-5): ";
+        subOption = inputInt();
+
+        if (subOption < 1 || subOption > 5)
         {
-            int subOption = 0;
-
-            do
-            {
-                clearScreen();
-                garis();
-                cout << BLUE << "[ Golongan Tipe Data ]" << RESET << endl;
-                garis();
-                cout << "1. Angka" << endl;
-                cout << "2. Karakter" << endl;
-                cout << "3. Waktu" << endl;
-                cout << "4. Boolean" << endl;
-                cout << "5. Kembali ke Menu Utama" << endl;
-                garis();
-
-                cout << "Masukkan pilihan (1-5): ";
-                subOption = inputInt();
-
-                if (subOption < 1 || subOption > 5)
-                {
-                    cout << RED << "Pilihan tidak tersedia!" << RESET << endl;
-                    pause();
-                    continue;
-                }
-
-                // ------------------ ANGKA ------------------
-                if (subOption == 1)
-                {
-                    int subSubOption = 0;
-
-                    do
-                    {
-                        clearScreen();
-                        garis();
-                        cout << GREEN << "[ Angka ]" << RESET << endl;
-                        garis();
-                        cout << "1. Bilangan Bulat" << endl;
-                        cout << "2. Bilangan Pecahan" << endl;
-                        cout << "3. Kembali" << endl;
-                        garis();
-                        cout << "Masukkan pilihan (1-3): ";
-                        subSubOption = inputInt();
-
-                        if (subSubOption < 1 || subSubOption > 3)
-                        {
-                            cout << RED << "Pilihan tidak tersedia!" << RESET << endl;
-                            pause();
-                            continue;
-                        }
-
-                        // -------- Bilangan Bulat --------
-                        if (subSubOption == 1)
-                        {
-                            int a, b;
-                            string op;
-
-                            clearScreen();
-                            garis();
-                            cout << MAGENTA << "[ Bilangan Bulat ]" << RESET << endl;
-                            garis();
-
-                            cout << "Masukkan nilai a: ";
-                            a = inputInt();
-                            cout << "Masukkan nilai b: ";
-                            b = inputInt();
-                            cout << "Masukkan operator (+, -, *, /): ";
-                            cin >> op;
-
-                            garis();
-
-                            if (op == "+")
-                                cout << "Hasil = " << a + b << endl;
-                            else if (op == "-")
-                                cout << "Hasil = " << a - b << endl;
-                            else if (op == "*")
-                                cout << "Hasil = " << a * b << endl;
-                            else if (op == "/")
-                            {
-                                if (b == 0)
-                                    cout << RED << "Error: Pembagian dengan nol!" << RESET << endl;
-                                else
-                                    cout << "Hasil = " << a / b << endl;
-                            }
-                            else
-                                cout << RED << "Operator tidak valid." << RESET << endl;
-
-                            garis();
-                            pause();
-                        }
-
-                        // -------- Bilangan Pecahan --------
-                        if (subSubOption == 2)
-                        {
-                            float a, b;
-                            string op;
-
-                            clearScreen();
-                            garis();
-                            cout << MAGENTA << "[ Bilangan Pecahan ]" << RESET << endl;
-                            garis();
-
-                            cout << "Masukkan nilai a: ";
-                            cin >> a;
-                            cout << "Masukkan nilai b: ";
-                            cin >> b;
-                            cout << "Masukkan operator (+, -, *, /): ";
-                            cin >> op;
-
-                            garis();
-
-                            if (op == "+")
-                                cout << "Hasil = " << a + b << endl;
-                            else if (op == "-")
-                                cout << "Hasil = " << a - b << endl;
-                            else if (op == "*")
-                                cout << "Hasil = " << a * b << endl;
-                            else if (op == "/")
-                            {
-                                if (b == 0)
-                                    cout << RED << "Error: Pembagian dengan nol!" << RESET << endl;
-                                else
-                                    cout << "Hasil = " << a / b << endl;
-                            }
-                            else
-                                cout << RED << "Operator tidak valid." << RESET << endl;
-
-                            garis();
-                            pause();
-                        }
-
-                    } while (subSubOption != 3);
-                }
-
-                // ------------------ KARAKTER ------------------
-                if (subOption == 2)
-                {
-                    int ulang = 0;
-                    do
-                    {
-                        clearScreen();
-                        garis();
-                        cout << YELLOW << "[ Karakter ]" << RESET << endl;
-                        garis();
-
-                        char ch;
-                        cout << "Masukkan sebuah karakter: ";
-                        cin >> ch;
-
-                        garis();
-                        cout << "Karakter yang dimasukkan: " << GREEN << ch << RESET << endl;
-                        garis();
-
-                        cout << "1. Coba lagi" << endl;
-                        cout << "2. Kembali" << endl;
-                        cout << "Masukkan pilihan: ";
-                        ulang = inputInt();
-
-                    } while (ulang == 1);
-                }
-
-                // ------------------ WAKTU ------------------
-                if (subOption == 3)
-                {
-                    clearScreen();
-                    garis();
-                    cout << CYAN << "[ Waktu ]" << RESET << endl;
-                    garis();
-
-                    int jam, menit, detik;
-                    cout << "Masukkan jam (0-23): ";
-                    jam = inputInt();
-                    cout << "Masukkan menit (0-59): ";
-                    menit = inputInt();
-                    cout << "Masukkan detik (0-59): ";
-                    detik = inputInt();
-
-                    garis();
-                    if (jam < 0 || jam > 23 || menit < 0 || menit > 59 || detik < 0 || detik > 59)
-                        cout << RED << "Waktu tidak valid!" << RESET << endl;
-                    else
-                        cout << "Waktu: " << jam << ":" << menit << ":" << detik << endl;
-
-                    garis();
-                    pause();
-                }
-
-                // ------------------ BOOLEAN ------------------
-                if (subOption == 4)
-                {
-                    clearScreen();
-                    garis();
-                    cout << GREEN << "[ Boolean ]" << RESET << endl;
-                    garis();
-
-                    int x;
-                    cout << "Masukkan angka (0/1): ";
-                    x = inputInt();
-
-                    if (x == 0)
-                        cout << "Nilai Boolean = FALSE" << endl;
-                    else if (x == 1)
-                        cout << "Nilai Boolean = TRUE" << endl;
-                    else
-                        cout << RED << "Boolean hanya menerima 0 atau 1!" << RESET << endl;
-
-                    garis();
-                    pause();
-                }
-
-            } while (subOption != 5);
+            cout << RED << "Pilihan tidak tersedia!" << RESET << endl;
+            pause();
+            continue;
         }
 
-        // ====================================================================================
-        // 2. MENU PERCABANGAN
-        // ====================================================================================
-        if (option == 2)
+        if (subOption == 1)
+            menuAngka();
+        else if (subOption == 2)
+            menuKarakter();
+        else if (subOption == 3)
+            menuWaktu();
+        else if (subOption == 4)
+            menuBoolean();
+
+    } while (subOption != 5);
+}
+
+// -------------------------------
+// Menu: Angka (submenu dari Golongan Tipe Data)
+// -------------------------------
+void menuAngka()
+{
+    int subSubOption = 0;
+
+    do
+    {
+        clearScreen();
+        garis();
+        cout << GREEN << "[ Angka ]" << RESET << endl;
+        garis();
+        cout << "1. Bilangan Bulat" << endl;
+        cout << "2. Bilangan Pecahan" << endl;
+        cout << "3. Kembali" << endl;
+        garis();
+        cout << "Masukkan pilihan (1-3): ";
+        subSubOption = inputInt();
+
+        if (subSubOption < 1 || subSubOption > 3)
         {
-            int subOption = 0;
-
-            do
-            {
-                clearScreen();
-                garis();
-                cout << BLUE << "[ Percabangan ]" << RESET << endl;
-                garis();
-                cout << "1. If" << endl;
-                cout << "2. If...else" << endl;
-                cout << "3. If...else if...else" << endl;
-                cout << "4. Switch Case" << endl;
-                cout << "5. Ternary" << endl;
-                cout << "6. Kembali ke Menu Utama" << endl;
-                garis();
-
-                cout << "Masukkan pilihan (1-6): ";
-                subOption = inputInt();
-
-                if (subOption == 1)
-                {
-                    clearScreen();
-                    garis();
-                    cout << "[ IF ]" << endl;
-                    garis();
-                    int x;
-                    cout << "Masukkan nilai x: ";
-                    x = inputInt();
-
-                    cout << (x > 0 ? "Bilangan positif" : "Bukan bilangan positif") << endl;
-                    garis();
-                    pause();
-                }
-
-                if (subOption == 2)
-                {
-                    clearScreen();
-                    garis();
-                    cout << "[ IF..ELSE ]" << endl;
-                    garis();
-                    int x;
-                    cout << "Masukkan nilai x: ";
-                    x = inputInt();
-
-                    if (x % 2 == 0)
-                        cout << "Genap" << endl;
-                    else
-                        cout << "Ganjil" << endl;
-
-                    garis();
-                    pause();
-                }
-
-                if (subOption == 3)
-                {
-                    clearScreen();
-                    garis();
-                    cout << "[ IF..ELSE IF..ELSE ]" << endl;
-                    garis();
-
-                    int umur;
-                    cout << "Masukkan umur: ";
-                    umur = inputInt();
-
-                    if (umur <= 10)
-                        cout << "Anak-anak" << endl;
-                    else if (umur <= 17)
-                        cout << "Remaja" << endl;
-                    else if (umur <= 30)
-                        cout << "Dewasa" << endl;
-                    else
-                        cout << "Tua" << endl;
-
-                    garis();
-                    pause();
-                }
-
-                if (subOption == 4)
-                {
-                    clearScreen();
-                    garis();
-                    cout << "[ SWITCH CASE ]" << endl;
-                    garis();
-
-                    int hari;
-                    cout << "Masukkan angka 1-7: ";
-                    hari = inputInt();
-
-                    switch (hari)
-                    {
-                    case 1:
-                        cout << "Senin";
-                        break;
-                    case 2:
-                        cout << "Selasa";
-                        break;
-                    case 3:
-                        cout << "Rabu";
-                        break;
-                    case 4:
-                        cout << "Kamis";
-                        break;
-                    case 5:
-                        cout << "Jumat";
-                        break;
-                    case 6:
-                        cout << "Sabtu";
-                        break;
-                    case 7:
-                        cout << "Minggu";
-                        break;
-                    default:
-                        cout << RED << "Tidak ada hari ke-" << hari << RESET;
-                    }
-
-                    cout << endl;
-                    garis();
-                    pause();
-                }
-
-                if (subOption == 5)
-                {
-                    clearScreen();
-                    garis();
-                    cout << "[ TERNARY ]" << endl;
-                    garis();
-
-                    int nilai;
-                    cout << "Masukkan nilai (0-100): ";
-                    nilai = inputInt();
-
-                    cout << (nilai >= 75 ? "LULUS" : "TIDAK LULUS") << endl;
-
-                    garis();
-                    pause();
-                }
-
-            } while (subOption != 6);
+            cout << RED << "Pilihan tidak tersedia!" << RESET << endl;
+            pause();
+            continue;
         }
 
-        // ====================================================================================
-        // 3. PERULANGAN
-        // ====================================================================================
-        if (option == 3)
-        {
-            int pilih;
+        if (subSubOption == 1)
+            menuBilanganBulat();
+        else if (subSubOption == 2)
+            menuBilanganPecahan();
 
-            do
-            {
-                clearScreen();
-                garis();
-                cout << MAGENTA << "[ PERULANGAN ]" << RESET << endl;
-                garis();
-                cout << "1. For" << endl;
-                cout << "2. While" << endl;
-                cout << "3. Do While" << endl;
-                cout << "4. Kembali" << endl;
-                garis();
+    } while (subSubOption != 3);
+}
 
-                cout << "Masukkan pilihan (1-4): ";
-                pilih = inputInt();
+// -------------------------------
+// Menu: Bilangan Bulat
+// -------------------------------
+void menuBilanganBulat()
+{
+    int a, b;
+    string op;
 
-                if (pilih == 1)
-                {
-                    clearScreen();
-                    int n;
-                    cout << "Cetak angka 1 sampai: ";
-                    n = inputInt();
+    clearScreen();
+    garis();
+    cout << MAGENTA << "[ Bilangan Bulat ]" << RESET << endl;
+    garis();
 
-                    for (int i = 1; i <= n; i++)
-                        cout << i << " ";
+    cout << "Masukkan nilai a: ";
+    a = inputInt();
+    cout << "Masukkan nilai b: ";
+    b = inputInt();
+    cout << "Masukkan operator (+, -, *, /): ";
+    cin >> op;
 
-                    cout << endl;
-                    garis();
-                    pause();
-                }
+    garis();
 
-                if (pilih == 2)
-                {
-                    clearScreen();
-                    int n;
-                    cout << "Cetak angka 1 sampai: ";
-                    n = inputInt();
+    if (op == "+")
+        cout << "Hasil = " << a + b << endl;
+    else if (op == "-")
+        cout << "Hasil = " << a - b << endl;
+    else if (op == "*")
+        cout << "Hasil = " << a * b << endl;
+    else if (op == "/")
+    {
+        if (b == 0)
+            cout << RED << "Error: Pembagian dengan nol!" << RESET << endl;
+        else
+            cout << "Hasil = " << a / b << endl;
+    }
+    else
+        cout << RED << "Operator tidak valid." << RESET << endl;
 
-                    int i = 1;
-                    while (i <= n)
-                        cout << i++ << " ";
+    garis();
+    pause();
+}
 
-                    cout << endl;
-                    garis();
-                    pause();
-                }
+// -------------------------------
+// Menu: Bilangan Pecahan
+// -------------------------------
+void menuBilanganPecahan()
+{
+    float a, b;
+    string op;
 
-                if (pilih == 3)
-                {
-                    clearScreen();
-                    int n;
-                    cout << "Cetak angka 1 sampai: ";
-                    n = inputInt();
+    clearScreen();
+    garis();
+    cout << MAGENTA << "[ Bilangan Pecahan ]" << RESET << endl;
+    garis();
 
-                    int i = 1;
-                    do
-                    {
-                        cout << i << " ";
-                        i++;
-                    } while (i <= n);
+    cout << "Masukkan nilai a: ";
+    cin >> a;
+    cout << "Masukkan nilai b: ";
+    cin >> b;
+    cout << "Masukkan operator (+, -, *, /): ";
+    cin >> op;
 
-                    cout << endl;
-                    garis();
-                    pause();
-                }
+    garis();
 
-            } while (pilih != 4);
-        }
+    if (op == "+")
+        cout << "Hasil = " << a + b << endl;
+    else if (op == "-")
+        cout << "Hasil = " << a - b << endl;
+    else if (op == "*")
+        cout << "Hasil = " << a * b << endl;
+    else if (op == "/")
+    {
+        if (b == 0)
+            cout << RED << "Error: Pembagian dengan nol!" << RESET << endl;
+        else
+            cout << "Hasil = " << a / b << endl;
+    }
+    else
+        cout << RED << "Operator tidak valid." << RESET << endl;
 
-        // ====================================================================================
-        // 4. LARIK (ARRAY)
-        // ====================================================================================
-        if (option == 4)
+    garis();
+    pause();
+}
+
+// -------------------------------
+// Menu: Karakter
+// -------------------------------
+void menuKarakter()
+{
+    int ulang = 0;
+    do
+    {
+        clearScreen();
+        garis();
+        cout << YELLOW << "[ Karakter ]" << RESET << endl;
+        garis();
+
+        char ch;
+        cout << "Masukkan sebuah karakter: ";
+        cin >> ch;
+
+        garis();
+        cout << "Karakter yang dimasukkan: " << GREEN << ch << RESET << endl;
+        garis();
+
+        cout << "1. Coba lagi" << endl;
+        cout << "2. Kembali" << endl;
+        cout << "Masukkan pilihan: ";
+        ulang = inputInt();
+
+    } while (ulang == 1);
+}
+
+// -------------------------------
+// Menu: Waktu
+// -------------------------------
+void menuWaktu()
+{
+    clearScreen();
+    garis();
+    cout << CYAN << "[ Waktu ]" << RESET << endl;
+    garis();
+
+    int jam, menit, detik;
+    cout << "Masukkan jam (0-23): ";
+    jam = inputInt();
+    cout << "Masukkan menit (0-59): ";
+    menit = inputInt();
+    cout << "Masukkan detik (0-59): ";
+    detik = inputInt();
+
+    garis();
+    if (jam < 0 || jam > 23 || menit < 0 || menit > 59 || detik < 0 || detik > 59)
+        cout << RED << "Waktu tidak valid!" << RESET << endl;
+    else
+        cout << "Waktu: " << jam << ":" << menit << ":" << detik << endl;
+
+    garis();
+    pause();
+}
+
+// -------------------------------
+// Menu: Boolean
+// -------------------------------
+void menuBoolean()
+{
+    clearScreen();
+    garis();
+    cout << GREEN << "[ Boolean ]" << RESET << endl;
+    garis();
+
+    int x;
+    cout << "Masukkan angka (0/1): ";
+    x = inputInt();
+
+    if (x == 0)
+        cout << "Nilai Boolean = FALSE" << endl;
+    else if (x == 1)
+        cout << "Nilai Boolean = TRUE" << endl;
+    else
+        cout << RED << "Boolean hanya menerima 0 atau 1!" << RESET << endl;
+
+    garis();
+    pause();
+}
+
+// -------------------------------
+// Menu: Percabangan
+// -------------------------------
+void menuPercabangan()
+{
+    int subOption = 0;
+
+    do
+    {
+        clearScreen();
+        garis();
+        cout << BLUE << "[ Percabangan ]" << RESET << endl;
+        garis();
+        cout << "1. If" << endl;
+        cout << "2. If...else" << endl;
+        cout << "3. If...else if...else" << endl;
+        cout << "4. Switch Case" << endl;
+        cout << "5. Ternary" << endl;
+        cout << "6. Kembali ke Menu Utama" << endl;
+        garis();
+
+        cout << "Masukkan pilihan (1-6): ";
+        subOption = inputInt();
+
+        if (subOption == 1)
         {
             clearScreen();
             garis();
-            cout << GREEN << "[ Larik / Array ]" << RESET << endl;
+            cout << "[ IF ]" << endl;
+            garis();
+            int x;
+            cout << "Masukkan nilai x: ";
+            x = inputInt();
+
+            cout << (x > 0 ? "Bilangan positif" : "Bukan bilangan positif") << endl;
+            garis();
+            pause();
+        }
+
+        if (subOption == 2)
+        {
+            clearScreen();
+            garis();
+            cout << "[ IF..ELSE ]" << endl;
+            garis();
+            int x;
+            cout << "Masukkan nilai x: ";
+            x = inputInt();
+
+            if (x % 2 == 0)
+                cout << "Genap" << endl;
+            else
+                cout << "Ganjil" << endl;
+
+            garis();
+            pause();
+        }
+
+        if (subOption == 3)
+        {
+            clearScreen();
+            garis();
+            cout << "[ IF..ELSE IF..ELSE ]" << endl;
+            garis();
+
+            int umur;
+            cout << "Masukkan umur: ";
+            umur = inputInt();
+
+            if (umur <= 10)
+                cout << "Anak-anak" << endl;
+            else if (umur <= 17)
+                cout << "Remaja" << endl;
+            else if (umur <= 30)
+                cout << "Dewasa" << endl;
+            else
+                cout << "Tua" << endl;
+
+            garis();
+            pause();
+        }
+
+        if (subOption == 4)
+        {
+            clearScreen();
+            garis();
+            cout << "[ SWITCH CASE ]" << endl;
+            garis();
+
+            int hari;
+            cout << "Masukkan angka 1-7: ";
+            hari = inputInt();
+
+            switch (hari)
+            {
+            case 1:
+                cout << "Senin";
+                break;
+            case 2:
+                cout << "Selasa";
+                break;
+            case 3:
+                cout << "Rabu";
+                break;
+            case 4:
+                cout << "Kamis";
+                break;
+            case 5:
+                cout << "Jumat";
+                break;
+            case 6:
+                cout << "Sabtu";
+                break;
+            case 7:
+                cout << "Minggu";
+                break;
+            default:
+                cout << RED << "Tidak ada hari ke-" << hari << RESET;
+            }
+
+            cout << endl;
+            garis();
+            pause();
+        }
+
+        if (subOption == 5)
+        {
+            clearScreen();
+            garis();
+            cout << "[ TERNARY ]" << endl;
+            garis();
+
+            int nilai;
+            cout << "Masukkan nilai (0-100): ";
+            nilai = inputInt();
+
+            cout << (nilai >= 75 ? "LULUS" : "TIDAK LULUS") << endl;
+
+            garis();
+            pause();
+        }
+
+    } while (subOption != 6);
+}
+
+// -------------------------------
+// Menu: Perulangan
+// -------------------------------
+void menuPerulangan()
+{
+    int pilih;
+
+    do
+    {
+        clearScreen();
+        garis();
+        cout << MAGENTA << "[ PERULANGAN ]" << RESET << endl;
+        garis();
+        cout << "1. For" << endl;
+        cout << "2. While" << endl;
+        cout << "3. Do While" << endl;
+        cout << "4. Kembali" << endl;
+        garis();
+
+        cout << "Masukkan pilihan (1-4): ";
+        pilih = inputInt();
+
+        if (pilih == 1)
+        {
+            clearScreen();
+            int n;
+            cout << "Cetak angka 1 sampai: ";
+            n = inputInt();
+
+            for (int i = 1; i <= n; i++)
+                cout << i << " ";
+
+            cout << endl;
+            garis();
+            pause();
+        }
+
+        if (pilih == 2)
+        {
+            clearScreen();
+            int n;
+            cout << "Cetak angka 1 sampai: ";
+            n = inputInt();
+
+            int i = 1;
+            while (i <= n)
+                cout << i++ << " ";
+
+            cout << endl;
+            garis();
+            pause();
+        }
+
+        if (pilih == 3)
+        {
+            clearScreen();
+            int n;
+            cout << "Cetak angka 1 sampai: ";
+            n = inputInt();
+
+            int i = 1;
+            do
+            {
+                cout << i << " ";
+                i++;
+            } while (i <= n);
+
+            cout << endl;
+            garis();
+            pause();
+        }
+
+    } while (pilih != 4);
+}
+
+// -------------------------------
+// Menu: Larik (Array) - Pilih Dimensi
+// -------------------------------
+void menuLarik()
+{
+    int pilih;
+
+    do
+    {
+        clearScreen();
+        garis();
+        cout << GREEN << "[ LARIK / ARRAY ]" << RESET << endl;
+        garis();
+        cout << "1. Array 1 Dimensi" << endl;
+        cout << "2. Array 2 Dimensi (Matriks)" << endl;
+        cout << "3. Kembali" << endl;
+        garis();
+
+        cout << "Masukkan pilihan (1-3): ";
+        pilih = inputInt();
+
+        // -----------------------------------
+        // ARRAY 1 DIMENSI
+        // -----------------------------------
+        if (pilih == 1)
+        {
+            clearScreen();
+            garis();
+            cout << GREEN << "[ ARRAY 1 DIMENSI ]" << RESET << endl;
             garis();
 
             int n;
             cout << "Jumlah elemen array: ";
             n = inputInt();
 
-            int arr[n];
+            int *arr = new int[n];
+
             cout << "Masukkan elemen:" << endl;
             for (int i = 0; i < n; i++)
             {
@@ -546,21 +633,63 @@ int main()
             garis();
             cout << "Isi array: ";
             for (int i = 0; i < n; i++)
-            {
                 cout << arr[i] << " ";
-            }
 
             cout << endl;
             garis();
             pause();
+
+            delete[] arr;
         }
 
-    } while (option != 5);
+        // -----------------------------------
+        // ARRAY 2 DIMENSI / MATRIKS
+        // -----------------------------------
+        else if (pilih == 2)
+        {
+            clearScreen();
+            garis();
+            cout << BLUE << "[ ARRAY 2 DIMENSI / MATRIKS ]" << RESET << endl;
+            garis();
 
-    clearScreen();
-    garis();
-    cout << GREEN << "Program selesai. Terima kasih" << RESET << endl;
-    garis();
+            int baris, kolom;
+            cout << "Masukkan jumlah baris: ";
+            baris = inputInt();
+            cout << "Masukkan jumlah kolom: ";
+            kolom = inputInt();
 
-    return 0;
+            // Alokasi dinamis matriks
+            int **matriks = new int *[baris];
+            for (int i = 0; i < baris; i++)
+                matriks[i] = new int[kolom];
+
+            cout << "Masukkan elemen matriks:" << endl;
+            for (int i = 0; i < baris; i++)
+            {
+                for (int j = 0; j < kolom; j++)
+                {
+                    cout << "Elemen [" << i << "][" << j << "]: ";
+                    matriks[i][j] = inputInt();
+                }
+            }
+
+            garis();
+            cout << "Isi matriks:" << endl;
+            for (int i = 0; i < baris; i++)
+            {
+                for (int j = 0; j < kolom; j++)
+                    cout << matriks[i][j] << " ";
+                cout << endl;
+            }
+
+            garis();
+            pause();
+
+            // Dealokasi
+            for (int i = 0; i < baris; i++)
+                delete[] matriks[i];
+            delete[] matriks;
+        }
+
+    } while (pilih != 3);
 }
