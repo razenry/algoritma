@@ -64,7 +64,7 @@ void menuWaktu();
 void menuBoolean();
 void menuPercabangan();
 void menuPerulangan();
-void menuLarik(); // array
+void menuLarik();
 
 // -------------------------------
 // main
@@ -318,27 +318,119 @@ void menuKarakter()
 // -------------------------------
 void menuWaktu()
 {
-    clearScreen();
-    garis();
-    cout << CYAN << "[ Waktu ]" << RESET << endl;
-    garis();
+    int ulang = 0;
+    do
+    {
+        clearScreen();
+        garis();
+        cout << CYAN << "[ Menu Waktu ]" << RESET << endl;
+        garis();
+        cout << "1. Input Waktu" << endl;
+        cout << "2. Tampilkan Date (Tanggal Sekarang)" << endl;
+        cout << "3. Tampilkan Time (Waktu Sekarang)" << endl;
+        cout << "4. Tampilkan DateTime (Tanggal + Waktu)" << endl;
+        cout << "5. Kembali" << endl;
+        garis();
+        cout << "Pilih opsi: ";
+        int pilihan = inputInt();
 
-    int jam, menit, detik;
-    cout << "Masukkan jam (0-23): ";
-    jam = inputInt();
-    cout << "Masukkan menit (0-59): ";
-    menit = inputInt();
-    cout << "Masukkan detik (0-59): ";
-    detik = inputInt();
+        clearScreen();
 
-    garis();
-    if (jam < 0 || jam > 23 || menit < 0 || menit > 59 || detik < 0 || detik > 59)
-        cout << RED << "Waktu tidak valid!" << RESET << endl;
-    else
-        cout << "Waktu: " << jam << ":" << menit << ":" << detik << endl;
+        switch (pilihan)
+        {
+        case 1:
+        {
+            garis();
+            cout << CYAN << "[ Input Waktu ]" << RESET << endl;
+            garis();
 
-    garis();
-    pause();
+            int jam, menit, detik;
+            cout << "Masukkan jam (0-23): ";
+            jam = inputInt();
+            cout << "Masukkan menit (0-59): ";
+            menit = inputInt();
+            cout << "Masukkan detik (0-59): ";
+            detik = inputInt();
+
+            garis();
+            if (jam < 0 || jam > 23 || menit < 0 || menit > 59 || detik < 0 || detik > 59)
+                cout << RED << "Waktu tidak valid!" << RESET << endl;
+            else
+                cout << "Waktu: " << jam << ":" << menit << ":" << detik << endl;
+
+            garis();
+            break;
+        }
+
+        case 2:
+        {
+            garis();
+            cout << CYAN << "[ Tanggal Hari Ini ]" << RESET << endl;
+            garis();
+
+            time_t now = time(nullptr);
+            tm *ltm = localtime(&now);
+
+            cout << "Tanggal: "
+                 << ltm->tm_mday << "-"
+                 << ltm->tm_mon + 1 << "-"
+                 << ltm->tm_year + 1900 << endl;
+
+            garis();
+            break;
+        }
+
+        case 3:
+        {
+            garis();
+            cout << CYAN << "[ Waktu Sekarang ]" << RESET << endl;
+            garis();
+
+            time_t now = time(nullptr);
+            tm *ltm = localtime(&now);
+
+            cout << "Waktu: "
+                 << ltm->tm_hour << ":"
+                 << ltm->tm_min << ":"
+                 << ltm->tm_sec << endl;
+
+            garis();
+            break;
+        }
+
+        case 4:
+        {
+            garis();
+            cout << CYAN << "[ DateTime Sekarang ]" << RESET << endl;
+            garis();
+
+            time_t now = time(nullptr);
+            tm *ltm = localtime(&now);
+
+            cout << "DateTime: "
+                 << ltm->tm_mday << "-"
+                 << ltm->tm_mon + 1 << "-"
+                 << ltm->tm_year + 1900 << "  "
+                 << ltm->tm_hour << ":"
+                 << ltm->tm_min << ":"
+                 << ltm->tm_sec << endl;
+
+            garis();
+            break;
+        }
+
+        case 5:
+            return; // ← langsung kembali seperti menuKarakter
+
+        default:
+            cout << RED << "Pilihan tidak valid!" << RESET << endl;
+        }
+
+        cout << "\n1. Kembali ke Menu Waktu\n2. Kembali ke Menu Sebelumnya\n";
+        cout << "Masukkan pilihan: ";
+        ulang = inputInt();
+
+    } while (ulang == 1);
 }
 
 // -------------------------------

@@ -16,6 +16,9 @@ Program ini menampilkan contoh:
 * Sistem input aman (anti-crash)
 
 ---
+[][]
+[]
+[]
 
 # 🧩 **2. Fitur Utama Program**
 
